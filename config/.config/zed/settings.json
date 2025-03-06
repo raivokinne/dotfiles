@@ -1,0 +1,30 @@
+{
+  "ui_font_size": 18,
+  "buffer_font_size": 18,
+  "buffer_line_height": null,
+  "relative_line_numbers": true,
+  "tab_bar": {
+    "show": false
+  },
+  "scrollbar": {
+    "show": "never"
+  },
+  "indent_guides": {
+    "enabled": false
+  },
+  "centered_layout": {
+    "left_padding": 0.15,
+    "right_padding": 0.15
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  },
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "vim_mode": true
+}

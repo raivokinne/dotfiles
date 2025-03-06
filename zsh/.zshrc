@@ -42,6 +42,8 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -57,6 +59,12 @@ alias spico='sedit'
 alias nano='edit'
 alias snano='sedit'
 alias vim='nvim'
+alias lvim='NVIM_APPNAME="LazyVim" nvim'
+alias art="php artisan"
+alias migrate="php artisan migrate"
+alias seed="php artisan db:seed"
+alias la="ls -la"
+alias godot-server="~/.local/bin/godot-server"
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
@@ -127,7 +135,6 @@ alias cls='clear'
 alias apt-get='sudo apt-get'
 alias multitail='multitail --no-repeat -c'
 alias freshclam='sudo freshclam'
-alias vi='nvim'
 alias svi='sudo vi'
 alias vis='nvim "+set si"'
 
@@ -288,20 +295,6 @@ alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-rust="NVIM_APPNAME=Rust nvim"
 
-function nvims() {
-  items=("default" "kickstart" "LazyVim" "Rust")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
-
-bindkey -s ^a "nvims\n"
-
 # move and go to the directory
 mvg() {
 	if [ -d "$2" ]; then
@@ -362,6 +355,7 @@ export PATH="/usr/local/Homebrew/bin:$PATH"
 
 # Additional PATH modifications
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/sbin"
 
 # Go environment
 export GOPATH="$HOME/go"
@@ -386,5 +380,39 @@ export PATH="/usr/local/share/dotnet/:$PATH"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.omp.json)"
+eval "$(starship init zsh)"
+# eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
+
+export DYLD_LIBRARY_PATH="/usr/local/lib:$DYLD_LIBRARY_PATH"
+
+# pnpm
+export PNPM_HOME="/Users/raivokinne/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+# Herd injected PHP binary.
+export PATH="/Users/raivokinne/Library/Application Support/Herd/bin/":$PATH
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/raivokinne/Library/Application Support/Herd/config/php/82/"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
