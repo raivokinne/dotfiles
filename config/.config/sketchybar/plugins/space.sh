@@ -1,7 +1,18 @@
-#!/bin/sh
+#!/bin/bash
+SPACE_ID=$(echo "$NAME" | sed 's/space\.//')
+SELECTED=$(yabai -m query --spaces --space | jq -r '.index')
 
-# The $SELECTED variable is available for space components and indicates if
-# the space invoking this script (with name: $NAME) is currently selected:
-# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
+if [[ $SELECTED == $SPACE_ID ]]; then
+  sketchybar --set "$NAME" background.color=0xffffffff icon.color=0xff000000
+else
+  sketchybar --set "$NAME" background.color=$TRANSPARENT icon.color=0xffffffff
+fi
 
-sketchybar --set "$NAME" background.drawing="$SELECTED"
+# Show indicator for windows in this space
+WINDOWS=$(yabai -m query --spaces --space "$SPACE_ID" | jq -r '.windows | length')
+if [[ $WINDOWS -gt 0 ]]; then
+  sketchybar --set "$NAME" icon.background.color=0x40ffffff
+else
+  sketchybar --set "$NAME" icon.background.color=0x00000000
+fi
+

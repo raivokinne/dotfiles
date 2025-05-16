@@ -1,6 +1,6 @@
 {
-  "ui_font_size": 12,
-  "buffer_font_size": 16,
+  "ui_font_size": 18,
+  "buffer_font_size": 18,
   "buffer_line_height": null,
   "relative_line_numbers": true,
   "tab_bar": {
@@ -23,15 +23,14 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Vitesse Black"
+    "dark": "Tokyo Night"
   },
-  "buffer_font_family": "JetBrainsMono Nerd Font",
   "ui_font_family": "JetBrainsMono Nerd Font",
   "vim_mode": true,
   "assistant": { "version": "2", "enabled": false, "button": false },
   "chat_panel": { "button": null },
   "collaboration_panel": { "button": false },
-  "features": { "copilot": false, "edit_prediction_provider": "none" },
+  "features": { "copilot": false, "inline_completion_provider": "none" },
   "project_panel": { "button": false },
   "toolbar": {
     "breadcrumbs": false,

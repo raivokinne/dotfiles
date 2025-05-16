@@ -1,10 +1,31 @@
 #!/bin/sh
+# Get the app name of the first window on the focused workspace.
+# (FOCUSED_WORKSPACE is assumed to be set by AeroSpace callbacks)
+FRONTAPP=$(aerospace list-windows --workspace "$FOCUSED_WORKSPACE" | awk -F '\\| *' '{print $2}' | head -n 1)
+ICON=""
 
-# Some events send additional information specific to the event in the $INFO
-# variable. E.g. the front_app_switched event sends the name of the newly
-# focused application in the $INFO variable:
-# https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
+case "$FRONTAPP" in
+  "Safari")   ICON="󰀹" ;;
+  "Chrome")   ICON="󰊯" ;;
+  "Firefox")  ICON="󰈹" ;;
+  "Terminal") ICON="󰆍" ;;
+  "iTerm2")   ICON="󰆍" ;;
+  "kitty")    ICON="󰆍" ;;
+  "Code")     ICON="󰨞" ;;
+  "Xcode")    ICON="󰙅" ;;
+  "Finder")   ICON="󰀶" ;;
+  "Mail")     ICON="󰇮" ;;
+  "Slack")    ICON="󰒱" ;;
+  "Discord")  ICON="󰙯" ;;
+  "Spotify")  ICON="󰓇" ;;
+  "Music")    ICON="󰎄" ;;
+  "Calendar") ICON="󰃭" ;;
+  "Preview")  ICON="󰋲" ;;
+  "Keynote")  ICON="󰐨" ;;
+  "Pages")    ICON="󱔗" ;;
+  "Numbers")  ICON="󰄄" ;;
+  *)          ICON="󰣆" ;;
+esac
 
-if [ "$SENDER" = "front_app_switched" ]; then
-  sketchybar --set "$NAME" label="$INFO"
-fi
+sketchybar --set "$NAME" icon="$ICON" label="$FRONTAPP"
+

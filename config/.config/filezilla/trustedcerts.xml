@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.68.1" platform="mac">
+	<FtpSessionResumption>
+		<Entry Host="ftp.projekts.area.lv" Port="21">true</Entry>
+	</FtpSessionResumption>
+</FileZilla3>

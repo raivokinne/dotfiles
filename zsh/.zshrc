@@ -65,6 +65,8 @@ alias migrate="php artisan migrate"
 alias seed="php artisan db:seed"
 alias la="ls -la"
 alias godot-server="~/.local/bin/godot-server"
+alias msfconsole="/opt/metasploit-framework/bin/msfconsole"
+alias cd="z"
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
@@ -325,17 +327,6 @@ up()
 	cd $d
 }
 
-# automatically do an ls after each cd, z, or zoxide
-cd ()
-{
-	if [ -n "$1" ]; then
-		builtin cd "$@" && ls
-	else
-		builtin cd ~ && ls
-	fi
-}
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -379,9 +370,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/usr/local/share/dotnet/:$PATH"
 
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 # eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
+eval $(opam config env)
+eval "$(zoxide init zsh)"
 
 export DYLD_LIBRARY_PATH="/usr/local/lib:$DYLD_LIBRARY_PATH"
 
@@ -416,3 +408,14 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/raivokinne/.opam/opam-init/init.zsh' ]] || source '/Users/raivokinne/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
