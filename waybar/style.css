@@ -1,0 +1,102 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 15px;
+    border: none;
+    border-radius: 0;
+    padding: 0 4px;
+}
+
+window#waybar {
+    background: #000000;
+    color: #ffffff;
+}
+
+/* Tags (dwl) */
+#tags button {
+    color: #888888;
+    background: #000000;
+    padding: 0 6px;
+    min-width: 0;
+}
+
+#tags button.focused {
+    color: #000000;
+    background: #ffffff;
+}
+
+#tags button.occupied {
+    color: #cccccc;
+}
+
+#tags button.empty {
+    color: #555555;
+}
+
+#tags button.urgent {
+    color: #000000;
+    background: #ff4444;
+}
+
+#tags button:hover {
+    background: #333333;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+/* Window title / layout */
+#window {
+    color: #aaaaaa;
+    padding: 0 6px;
+}
+
+/* Right modules */
+#tray {
+    padding: 0 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#cpu,
+#memory {
+    color: #aaaaaa;
+    padding: 0 6px;
+}
+
+#battery {
+    color: #ffffff;
+    padding: 0 6px;
+}
+
+#battery.warning {
+    color: #aaaaaa;
+}
+
+#battery.critical {
+    color: #ffffff;
+    background: #333333;
+}
+
+#battery.charging {
+    color: #ffffff;
+}
+
+#clock {
+    color: #ffffff;
+    padding: 0 6px;
+}
+
+#custom-power {
+    color: #ffffff;
+    padding: 0 8px;
+}
+
+#custom-power:hover {
+    background: #ffffff;
+    color: #000000;
+}

@@ -1,0 +1,118 @@
+{
+	"layer": "top",
+	"position": "bottom",
+	"height": 24,
+	"modules-left": [
+		"dwl/tags",
+		"dwl/window"
+	],
+	"modules-center": [],
+	"modules-right": [
+		"tray",
+		"cpu",
+		"memory",
+		"battery",
+		"clock",
+	],
+	"dwl/tags": {
+		"num-tags": 9,
+		"tag-sort": "id",
+		"on-click": "activate",
+		"on-click-middle": "toggleview",
+		"on-click-right": "toggleview",
+		"on-scroll-up": "/home/rkinne/dotfiles/scripts/dwl-cycle-tags.sh right",
+		"on-scroll-down": "/home/rkinne/dotfiles/scripts/dwl-cycle-tags.sh left",
+	},
+	"dwl/window": {
+		"format": "{layout}",
+	},
+	"network": {
+		"interval": 2,
+		"format-wifi": "{essid} ({signalStrength}%)\uf1eb",
+		"format-ethernet": "󰈀 {ifname}",
+		"format-linked": "\uf059 No IP ({ifname})",
+		"format-disconnected": "\uf071 Disconnected",
+		"tooltip-format": "{ifname} {ipaddr}/{cidr} via {gwaddr}",
+		"format-alt": "↓{bandwidthDownBytes} ↑{bandwidthUpBytes}"
+	},
+	"tray": {
+		"icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		"timezone": "Europe/Riga",
+		"format": "CLOCK: {:%H:%M}",
+		"format-alt": "{:L%A, %b %d}",
+		"tooltip-format": "{:%Y}",
+	},
+	"cpu": {
+		"interval": 2,
+		"format": "CPU: {load}%"
+	},
+	"memory": {
+		"format": "MEM: {}%"
+	},
+	"battery": {
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "BAT: {capacity}%",
+		"format-full": "BAT: {capacity}%",
+		"format-charging": "CHARGING: {capacity}%",
+		"format-plugged": "PLUGGED: {capacity}%",
+		"format-alt": "{time} {icon}",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" "
+		]
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"tooltip": false,
+		"format-muted": " Muted",
+		"on-click": "pamixer -t",
+		"on-scroll-up": "pamixer -i 2",
+		"on-scroll-down": "pamixer -d 2",
+		"scroll-step": 5,
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [
+				"",
+				"",
+				""
+			]
+		}
+	},
+	"custom/notification": {
+		"tooltip": false,
+		"format": "{icon}",
+		"format-icons": {
+			"notification": "<span foreground='red'><sup></sup></span>",
+			"none": "  ",
+			"dnd-notification": "<span foreground='red'><sup></sup></span>",
+			"dnd-none": "",
+			"inhibited-notification": "<span foreground='red'><sup></sup></span>",
+			"inhibited-none": "",
+			"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+			"dnd-inhibited-none": ""
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "sleep 0.1s && swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	},
+}
