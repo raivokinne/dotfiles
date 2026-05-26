@@ -1,1 +1,1 @@
-("~/dotfiles/" "~/learning/interpriter/" "~/test/zig-test/" "~/learning/codecrafters-shell-php/" "~/personal/shell/")
+("~/dotfiles/" "~/test/zig-test/" "~/learning/interpriter/" "~/learning/codecrafters-shell-php/" "~/personal/shell/")

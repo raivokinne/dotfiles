@@ -87,6 +87,27 @@
   :after evil
   :config (evil-commentary-mode))
 
+(use-package restart-emacs)
+
+(use-package ibuffer-projectile
+  :hook (ibuffer . (lambda ()
+                     (ibuffer-projectile-set-filter-groups)
+                     (unless (eq ibuffer-sorting-mode 'alphabetic)
+                       (ibuffer-do-sort-by-alphabetic)))))
+
+(use-package ibuffer
+  :ensure nil
+  :custom
+  (ibuffer-show-empty-filter-groups nil)
+  (ibuffer-display-summary nil)
+  :config
+  (evil-collection-define-key 'normal 'ibuffer-mode-map
+    "j" 'ibuffer-forward-line
+    "k" 'ibuffer-backward-line
+    "d" 'ibuffer-mark-for-delete
+    "x" 'ibuffer-do-delete
+    "r" 'ibuffer-update))
+
 (use-package general
   :after evil
   :config
@@ -107,10 +128,11 @@
 
     ;; Buffers
     "b"  '(:ignore t :which-key "buffers")
-    "bb" '(consult-buffer         :which-key "switch buffer")
-    "bd" '(kill-this-buffer       :which-key "kill buffer")
-    "bn" '(next-buffer            :which-key "next")
-    "bp" '(previous-buffer        :which-key "prev")
+    "bb" '(consult-buffer              :which-key "switch buffer")
+    "bB" '(ibuffer                     :which-key "ibuffer")
+    "bd" '(my/kill-current-buffer      :which-key "kill buffer")
+    "bn" '(next-buffer                 :which-key "next")
+    "bp" '(previous-buffer             :which-key "prev")
 
     ;; Search
     "s"  '(:ignore t :which-key "search")
@@ -148,7 +170,19 @@
     "tw" '(whitespace-mode        :which-key "whitespace")
 
     ;; Shell
-    "e"  '(eshell                 :which-key "eshell")))
+    "e"  '(eshell                 :which-key "eshell")
+
+    ;; Quit
+    "q"  '(:ignore t :which-key "quit")
+    "qq" '(save-buffers-kill-terminal :which-key "save & quit")
+    "qf" '(kill-emacs                 :which-key "force quit")
+    "qr" '(restart-emacs              :which-key "restart")))
+
+    ;; Quit
+    "q"  '(:ignore t :which-key "quit")
+    "qq" '(save-buffers-kill-emacs    :which-key "quit emacs")
+    "qr" '(restart-emacs              :which-key "restart emacs")
+    "qR" '((lambda () (interactive) (restart-emacs '("--debug-init"))) :which-key "restart with debug")
 
 (use-package which-key
   :init (which-key-mode)
@@ -176,15 +210,32 @@
 
 (use-package corfu
   :custom
-  (corfu-auto       t)
+  (corfu-auto t)
   (corfu-auto-delay 0.2)
-  (corfu-quit-no-match 'separator)
-  :init (global-corfu-mode))
+  (corfu-auto-prefix 2)
+  (corfu-quit-at-boundary 'separator)
+  (corfu-quit-no-match t)
+  (corfu-preselect 'prompt)
+  (corfu-sort-function #'corfu-sort-length-alpha) 
+  (advice-add #'lsp-completion-at-point :around
+	      (lambda (f &rest args)
+		(let ((orderless-style-dispatchers nil))
+		  (apply f args)))))
+  :init (global-corfu-mode)
 
-(use-package cape                  ; completion-at-point extensions
+(use-package cape
   :init
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file))
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (setq-local completion-at-point-functions
+                          (list #'lsp-completion-at-point
+                                #'cape-file
+                                #'cape-dabbrev)))))
+
+(with-eval-after-load 'lsp-mode
+  (setq lsp-completion-filter-on-incomplete t)
+  (add-to-list 'completion-category-overrides
+               '(lsp-capf (styles orderless basic))))
 
 (use-package typescript-mode
   :mode ("\\.ts\\'" "\\.tsx\\'"))
@@ -210,7 +261,7 @@
 
 (dolist (hook '(c-mode-hook c++-mode-hook python-mode-hook typescript-mode-hook
                  js-mode-hook css-mode-hook json-mode-hook sh-mode-hook
-                 rust-mode-hook go-mode-hook php-mode-hook))
+                 rust-mode-hook go-mode-hook php-mode-hook zig-mode-hook))
   (add-hook hook #'my/lsp-setup))
 
 
@@ -223,7 +274,6 @@
   (lsp-completion-provider :capf)
   (lsp-auto-guess-root t)
   (lsp-enable-snippet nil)
-  (lsp-completion-provider :none)
   (lsp-headerline-breadcrumb-enable nil)
   :hook (lsp-mode . (lambda () (font-lock-mode 1)))
   :config
