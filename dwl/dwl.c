@@ -2642,6 +2642,7 @@ void setfullscreen(Client *c, int fullscreen) {
   client_set_fullscreen(c, fullscreen);
   wlr_scene_node_reparent(&c->scene->node, layers[c->isfullscreen ? LyrFS
                                                   : c->isfloating ? LyrFloat
+						  : LyrTile]);
 
   if (fullscreen) {
     c->prev = c->geom;
@@ -2653,6 +2654,7 @@ void setfullscreen(Client *c, int fullscreen) {
   }
   arrange(c->mon);
   printstatus();
+}
 
 
 void setgaps(int oh, int ov, int ih, int iv) {
