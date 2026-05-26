@@ -1,0 +1,1 @@
+#s(lsp-session ("/home/rkinne/learning/MonkeyCompiler-Golang2021" "/home/rkinne/test/python" "/home/rkinne/personal/shell" "/home/rkinne/learning/codecrafters-shell-php") nil #s(hash-table test equal data (iph ("/home/rkinne/learning/codecrafters-shell-php"))) #s(hash-table test equal) #s(hash-table test equal))

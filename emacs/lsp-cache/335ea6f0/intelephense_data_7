@@ -1,0 +1,8 @@
+©1!1domdocument::importnode()"1domnode::appendchild()"1domnode::insertbefore()"1domnode::removechild()"!1domnode::replacechild()"›6:6mockery::mock()"%"!
+€@ 6@&\Mockery\MockInterface96mockery::spy()"%"!
+€@ 6@&\Mockery\MockInterface?6mockery::namedmock()"%"!
+€@ 6@&\Mockery\MockInterfaceB6mockery::instancemock()"%"!
+€@ 6@&\Mockery\MockInterface16mock()"%"!
+€@ 6@&\Mockery\MockInterface06spy()"%"!
+€@ 6@&\Mockery\MockInterface66namedmock()"%"!
+€@ 6@&\Mockery\MockInterface77expect()"ß9^9(phpunit\framework\testcase::createmock()"0",*@&\PHPUnit\Framework\MockObject\MockObjectX9(phpunit\framework\testcase::createstub()"*"&$@&\PHPUnit\Framework\MockObject\Stubh92phpunit\framework\testcase::createconfiguredmock()"0",*@&\PHPUnit\Framework\MockObject\MockObjecte9/phpunit\framework\testcase::createpartialmock()"0",*@&\PHPUnit\Framework\MockObject\MockObjectc9-phpunit\framework\testcase::createtestproxy()"0",*@&\PHPUnit\Framework\MockObject\MockObjectk95phpunit\framework\testcase::getmockforabstractclass()"0",*@&\PHPUnit\Framework\MockObject\MockObject

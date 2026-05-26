@@ -3,16 +3,15 @@
 	"position": "bottom",
 	"height": 24,
 	"modules-left": [
-		"dwl/tags",
-		"dwl/window"
-	],
-	"modules-center": [],
-	"modules-right": [
+		"battery",
 		"tray",
+	],
+	"modules-center": [
+		"clock",
+    ],
+	"modules-right": [
 		"cpu",
 		"memory",
-		"battery",
-		"clock",
 	],
 	"dwl/tags": {
 		"num-tags": 9,

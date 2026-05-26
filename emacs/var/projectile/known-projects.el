@@ -1,0 +1,1 @@
+("~/test/zig-test/" "~/learning/codecrafters-shell-php/" "~/personal/shell/")
