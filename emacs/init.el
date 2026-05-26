@@ -159,7 +159,7 @@
     "ld" '(lsp-find-definition     :which-key "definition")
     "lD" '(lsp-find-declaration    :which-key "declaration")
     "li" '(lsp-find-implementation :which-key "implementation")
-    "lr" '(lsp-find-references     :which-key "references")
+    "lR" '(lsp-find-references     :which-key "references")
     "l[" '(lsp-diagnostic-prev     :which-key "prev diagnostic")
     "l]" '(lsp-diagnostic-next     :which-key "next diagnostic")
 
@@ -180,8 +180,9 @@
 
     ;; Quit
     "q"  '(:ignore t :which-key "quit")
-    "qq" '(save-buffers-kill-emacs    :which-key "quit emacs")
-    "qr" '(restart-emacs              :which-key "restart emacs")
+    "qq" '(save-buffers-kill-terminal :which-key "save & quit")
+    "qf" '(kill-emacs                 :which-key "force quit")
+    "qr" '(restart-emacs              :which-key "restart")
     "qR" '((lambda () (interactive) (restart-emacs '("--debug-init"))) :which-key "restart with debug")
 
 (use-package which-key
@@ -211,17 +212,24 @@
 (use-package corfu
   :custom
   (corfu-auto t)
-  (corfu-auto-delay 0.2)
+  (corfu-auto-delay 0.1)
   (corfu-auto-prefix 2)
   (corfu-quit-at-boundary 'separator)
   (corfu-quit-no-match t)
   (corfu-preselect 'prompt)
-  (corfu-sort-function #'corfu-sort-length-alpha) 
+  (corfu-sort-function #'corfu-sort-length-alpha)
+  :init
+  (global-corfu-mode)
+  :config
   (advice-add #'lsp-completion-at-point :around
 	      (lambda (f &rest args)
 		(let ((orderless-style-dispatchers nil))
-		  (apply f args)))))
-  :init (global-corfu-mode)
+		  (apply f args))))
+  (define-key corfu-map (kbd "C-p") #'corfu-previous)
+  (define-key corfu-map (kbd "C-n") #'corfu-next)
+  (define-key corfu-map (kbd "C-y") #'corfu-insert)
+  (define-key corfu-map (kbd "C-SPC") #'completion-at-point)
+  (define-key corfu-map (kbd "RET") #'corfu-insert))
 
 (use-package cape
   :init
@@ -231,6 +239,11 @@
                           (list #'lsp-completion-at-point
                                 #'cape-file
                                 #'cape-dabbrev)))))
+
+(use-package corfu-popupinfo
+  :after corfu
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :custom (corfu-popupinfo-delay 0.5))
 
 (with-eval-after-load 'lsp-mode
   (setq lsp-completion-filter-on-incomplete t)
