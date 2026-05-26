@@ -25,7 +25,7 @@
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (setq inhibit-startup-message t
-      visible-bell t
+      visible-bell nil
       use-short-answers t)          ; "y" instead of "yes"
 
 (scroll-bar-mode -1)
@@ -41,8 +41,8 @@
 (dolist (hook '(term-mode-hook shell-mode-hook eshell-mode-hook))
   (add-hook hook (lambda () (display-line-numbers-mode 0))))
 
-(set-face-attribute 'default        nil :font "JetBrainsMono Nerd Font" :height 220)
-(set-face-attribute 'fixed-pitch    nil :font "JetBrainsMono Nerd Font" :height 220)
+(set-face-attribute 'default        nil :font "FiraCode Nerd Font" :height 220)
+(set-face-attribute 'fixed-pitch    nil :font "FiraCode Nerd Font" :height 220)
 (set-face-attribute 'variable-pitch nil :font "Cantarell"          :height 220)
 
 (use-package doom-themes
@@ -99,6 +99,8 @@
     ;; Files
     "f"  '(:ignore t :which-key "files")
     "ff" '(find-file              :which-key "find file")
+    "fd" '(dired                  :which-key "dired")
+    "fD" '(consult-dired          :which-key "dired recent")
     "fr" '(consult-recent-file    :which-key "recent files")
     "fe" '((lambda () (interactive) (find-file user-init-file))
             :which-key "open init.el")
@@ -122,8 +124,8 @@
 
     ;; Projects
     "p"  '(:ignore t :which-key "project")
-    "pp" '(projectile-switch-project   :which-key "switch project")
-    "pf" '(projectile-find-file        :which-key "find in project")
+    "pp" '(projectile-find-file        :which-key "find file in project")
+    "pf" '(projectile-switch-project   :which-key "switch project")
     "pk" '(projectile-kill-buffers     :which-key "kill project buffers")
 
     ;; LSP
@@ -196,13 +198,18 @@
   :mode "\\.php\\'")
 (use-package zig-mode
   :mode "\\.zig\\'")
+(use-package cc-mode)
+(use-package dart-mode)
+(use-package haskell-mode)
+(use-package kdl-mode)
+(use-package lua-mode)
 
 (defun my/lsp-setup ()
   (font-lock-mode 1)
   (lsp-deferred))
 
-(dolist (hook '(python-mode-hook typescript-mode-hook js-mode-hook
-                 css-mode-hook json-mode-hook sh-mode-hook
+(dolist (hook '(c-mode-hook c++-mode-hook python-mode-hook typescript-mode-hook
+                 js-mode-hook css-mode-hook json-mode-hook sh-mode-hook
                  rust-mode-hook go-mode-hook php-mode-hook))
   (add-hook hook #'my/lsp-setup))
 
@@ -217,6 +224,7 @@
   (lsp-auto-guess-root t)
   (lsp-enable-snippet nil)
   (lsp-completion-provider :none)
+  (lsp-headerline-breadcrumb-enable nil)
   :hook (lsp-mode . (lambda () (font-lock-mode 1)))
   :config
   (lsp-enable-which-key-integration t)
@@ -254,6 +262,15 @@
     :keymaps 'lsp-ui-mode-map   
     "K" #'lsp-ui-doc-glance))
 
+(use-package lsp-clangd
+  :ensure nil
+  :after lsp-mode
+  :custom
+  (lsp-clangd-version "latest")
+  (lsp-clients-clangd-args '("--clang-tidy"
+                             "--background-index"
+                             "--completion-style=detailed"
+                             "--header-insertion=never")))
 (use-package magit
   :commands magit-status
   :custom (magit-display-buffer-function
@@ -272,10 +289,19 @@
   :ensure nil
   :commands dired
   :bind ("C-x C-j" . dired-jump)
+  :hook (dired-mode . dired-hide-details-mode)
   :config
+  (setq dired-kill-when-opening-new-dired-buffer t)
+  (put 'dired-find-alternate-file 'disabled nil)
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-up-directory
     "l" 'dired-find-file))
+
+(use-package diredfl
+  :hook (dired-mode . diredfl-mode))
+
+(use-package vterm
+    :ensure t)
 
 (use-package eshell
   :ensure nil
@@ -292,7 +318,9 @@
       auto-save-default t)
 
 (setq scroll-margin 4
-      scroll-conservatively 101)
+      scroll-conservatively 101
+      scroll-step 1
+      ring-bell-function #'flash-mode-line)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (custom-set-variables
