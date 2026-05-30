@@ -1,1 +1,1 @@
-("~/dotfiles/" "~/test/zig-test/" "~/learning/interpriter/" "~/learning/codecrafters-shell-php/" "~/personal/shell/")
+("~/dotfiles/" "~/learning/interpriter/" "~/learning/db/" "~/contrib/php-src/" "~/contrib/zig/" "~/learning/lsp/" "~/test/zig-test/" "/usr/local/lib/node_modules/intelephense/" "~/learning/codecrafters-shell-php/" "~/personal/ai-blocker/" "~/personal/portfolio/")
