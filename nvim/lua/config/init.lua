@@ -1,0 +1,5 @@
+require("config.set")
+require("config.remap")
+require("config.autocmd")
+require("config.globals")
+require("config.terminal")
