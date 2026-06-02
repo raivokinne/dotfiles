@@ -1,0 +1,48 @@
+# ── Alabaster Refined — mako config ─────────────────────────────────────────
+# Place at: ~/.config/mako/config
+
+sort=-time
+layer=overlay
+anchor=top-right
+
+width=320
+height=120
+border-size=1
+border-radius=4
+padding=12
+
+background-color=#000000
+border-color=#3C3C3C
+text-color=#D4D4D4
+progress-color=over #4EC9B0
+
+font=JetBrainsMono Nerd Font 11
+max-visible=5
+default-timeout=4000
+ignore-timeout=0
+
+[urgency=low]
+text-color=#777777
+border-color=#3C3C3C
+default-timeout=3000
+
+[urgency=critical]
+text-color=#F44747
+border-color=#F44747
+default-timeout=0
+
+[summary="Brightness*"]
+text-color=#4EC9B0
+border-color=#4EC9B0
+default-timeout=1000
+
+[summary="Volume*"]
+text-color=#6A9955
+border-color=#3C3C3C
+default-timeout=1000
+
+[summary="*muted*"]
+text-color=#777777
+border-color=#3C3C3C
+default-timeout=1000
+

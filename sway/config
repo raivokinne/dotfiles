@@ -1,0 +1,190 @@
+font pango: JetBrainsMono Nerd Font 13
+
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term ghostty
+
+set $menu rofi -show drun
+
+focus_follows_mouse always
+
+output eDP-1 resolution 2560x1600 position 0,0 scale 1.3
+
+input "Apple MTP multi-touch" {
+	dwt disabled
+	tap disabled
+	natural_scroll enabled
+	middle_emulation disabled
+}
+
+input type:keyboard {
+    repeat_delay 200
+    repeat_rate 60
+    xkb_layout lv
+    xkb_options grp:alt_shift_toggle
+    xkb_options caps:escape
+}
+
+bindsym $mod+Return exec $term
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec $menu
+
+floating_modifier $mod normal
+
+bindsym $mod+Shift+c reload
+
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+set $brightness_notification_cmd  command -v notify-send >/dev/null && \
+        VALUE=$(brightnessctl --percentage get) && \
+        notify-send -e -h string:x-canonical-private-synchronous:brightness \
+            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+
+bindsym XF86MonBrightnessDown exec \
+        'STEP="$brightness_step" && brightnessctl -q set ${STEP:-5}%- && $brightness_notification_cmd'
+bindsym XF86MonBrightnessUp exec \
+        'STEP="$brightness_step" && brightnessctl -q set +${STEP:-5}% && $brightness_notification_cmd'
+
+set $volume_helper_cmd /usr/libexec/sway/volume-helper
+
+bindsym --locked {
+    XF86AudioRaiseVolume exec \
+        $volume_helper_cmd --limit "$volume_limit" --increase "$volume_step"
+    XF86AudioLowerVolume exec \
+        $volume_helper_cmd --limit "$volume_limit" --decrease "$volume_step"
+    XF86AudioMute    exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume_helper_cmd
+    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+}
+
+bindsym --locked {
+    XF86AudioPlay       exec playerctl play-pause
+    XF86AudioStop       exec playerctl stop
+}
+
+bindsym {
+    XF86AudioForward    exec playerctl position +10
+    XF86AudioNext       exec playerctl next
+    XF86AudioPause      exec playerctl pause
+    XF86AudioPrev       exec playerctl previous
+    XF86AudioRewind     exec playerctl position -10
+}
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+bindsym $mod+Shift+s exec $HOME/dotfiles/scripts/screenshot.sh area
+
+bindsym $mod+Shift+minus move scratchpad
+
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+
+bindsym $left resize shrink width 10px
+bindsym $down resize grow height 10px
+bindsym $up resize shrink height 10px
+bindsym $right resize grow width 10px
+
+bindsym Left resize shrink width 10px
+bindsym Down resize grow height 10px
+bindsym Up resize shrink height 10px
+bindsym Right resize grow width 10px
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# smart_gaps on
+for_window [class="^.*"] border pixel 3
+default_border pixel 3
+default_floating_border pixel 3
+# hide_edge_borders smart
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
+exec wl-clip-persist --clipboard regular
+exec wl-paste --type text --watch cliphist -max-items=35 store
+exec wl-paste --type image --watch cliphist -max-items=10 store
+exec awww-daemon
+exec swaync
+exec /usr/lib/xfce-polkit/xfce-polkit
+exec nwg-dock -p left -d -w 5 -nolauncher -ml 5 -l top -hl bottom -i 38
+exec ~/.local/bin/at_startup
+exec elephant
+exec wl-gammarelay-rs &
+exec ~/.scripts/nightlight
+
+bar {
+    swaybar_command waybar
+}
+
+#                       border    background  text      indicator  child_border
+client.focused          #4EC9B0   #000000     #D4D4D4   #4EC9B0    #4EC9B0
+client.focused_inactive #3C3C3C   #000000     #777777   #3C3C3C    #3C3C3C
+client.unfocused        #252526   #000000     #4A4A4A   #252526    #252526
+client.urgent           #F44747   #000000     #D4D4D4   #F44747    #F44747
+
+include /etc/sway/config.d/*

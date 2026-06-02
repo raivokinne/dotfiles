@@ -1,0 +1,34 @@
+keybind = ctrl+enter=unbind
+background = 000000
+foreground = D4D4D4
+
+background-blur = false
+confirm-close-surface = false
+shell-integration-features = no-cursor,no-sudo,no-title
+gtk-titlebar = false
+keybind = ctrl+enter=unbind
+font-size = 13
+
+cursor-color = 4EC9B0
+cursor-text = 000000
+selection-background = 264F78
+selection-foreground = D4D4D4
+
+palette = 0=#000000
+palette = 1=#F44747
+palette = 2=#6A9955
+palette = 3=#CE9178
+palette = 4=#4EC9B0
+palette = 5=#C586C0
+palette = 6=#6A7040
+palette = 7=#D4D4D4
+
+palette = 8=#4A4A4A
+palette = 9=#F44747
+palette = 10=#6A9955
+palette = 11=#DCDCAA
+palette = 12=#4EC9B0
+palette = 13=#C586C0
+palette = 14=#777777
+palette = 15=#FFFFFF
+

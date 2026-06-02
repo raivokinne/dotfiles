@@ -1,57 +1,113 @@
 * {
-    font-family: "FiraCode Nerd Font";
-    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 20px;
     border: none;
     border-radius: 0;
-    padding: 0 4px;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
 window#waybar {
-    background: #000000;
-    color: #ffffff;
+    background-color: #000000;
+    color: #D4D4D4;
+    border-bottom: 1px solid #3C3C3C;
 }
 
-/* Tags (dwl) */
-#tags button {
-    color: #888888;
-    background: #000000;
-    padding: 0 6px;
+#workspaces {
+    margin: 0 4px;
+    padding: 0 2px;
+}
+
+#workspaces button {
+    color: #4A4A4A;
+    background: transparent;
+    padding: 0 10px;
     min-width: 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s ease;
 }
 
-#tags button.focused {
-    color: #000000;
-    background: #ffffff;
+#workspaces button:hover {
+    color: #777777;
+    background: #252526;
+    border-bottom: 2px solid #3C3C3C;
 }
 
-#tags button.occupied {
-    color: #cccccc;
+#workspaces button.focused {
+    color: #4EC9B0;
+    background: transparent;
+    border-bottom: 2px solid #4EC9B0;
 }
 
-#tags button.empty {
-    color: #555555;
+#workspaces button.urgent {
+    color: #F44747;
+    border-bottom: 2px solid #F44747;
 }
 
-#tags button.urgent {
-    color: #000000;
-    background: #ff4444;
+#clock {
+    color: #D4D4D4;
+    padding: 0 14px;
 }
 
-#tags button:hover {
-    background: #333333;
-    color: #ffffff;
-    box-shadow: none;
-}
-
-/* Window title / layout */
-#window {
-    color: #aaaaaa;
-    padding: 0 6px;
-}
-
-/* Right modules */
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
 #tray {
-    padding: 0 6px;
+    color: #777777;
+    padding: 0 10px;
+    border-left: 1px solid #252526;
+}
+
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#network:hover,
+#pulseaudio:hover {
+    color: #D4D4D4;
+    background: #252526;
+}
+
+#battery {
+    color: #6A9955;
+}
+
+#battery.warning {
+    color: #CE9178;
+}
+
+#battery.critical {
+    color: #F44747;
+    animation: blink 1.2s linear infinite;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #4EC9B0;
+}
+
+#battery.full {
+    color: #6A9955;
+}
+
+@keyframes blink {
+    0%   { opacity: 1;   }
+    50%  { opacity: 0.4; }
+    100% { opacity: 1;   }
+}
+
+#network.disconnected {
+    color: #4A4A4A;
+}
+
+#pulseaudio.muted {
+    color: #4A4A4A;
+}
+
+#tray {
+    padding: 0 8px;
 }
 
 #tray > .passive {
@@ -60,43 +116,17 @@ window#waybar {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
+    background: #252526;
 }
 
-#cpu,
-#memory {
-    color: #aaaaaa;
-    padding: 0 6px;
+tooltip {
+    background: #252526;
+    border: 1px solid #3C3C3C;
+    border-radius: 4px;
+    color: #D4D4D4;
+    font-size: 12px;
 }
 
-#battery {
-    color: #ffffff;
-    padding: 0 6px;
-}
-
-#battery.warning {
-    color: #aaaaaa;
-}
-
-#battery.critical {
-    color: #ffffff;
-    background: #333333;
-}
-
-#battery.charging {
-    color: #ffffff;
-}
-
-#clock {
-    color: #ffffff;
-    padding: 0 6px;
-}
-
-#custom-power {
-    color: #ffffff;
-    padding: 0 8px;
-}
-
-#custom-power:hover {
-    background: #ffffff;
-    color: #000000;
+tooltip label {
+    color: #D4D4D4;
 }
