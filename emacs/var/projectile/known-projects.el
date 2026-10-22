@@ -1,1 +1,0 @@
-("~/dotfiles/" "~/contrib/php-src/" "~/learning/interpriter/" "~/learning/db/" "~/personal/lynx/" "~/learning/MonkeyCompiler-Golang2021/" "~/learning/codecrafters-shell-php/" "~/contrib/zig/" "~/test/zig-test/" "~/personal/compiler/" "/usr/lib/golang/src/runtime/" "~/personal/portfolio/" "/usr/local/lib/node_modules/intelephense/" "~/personal/ai-blocker/")

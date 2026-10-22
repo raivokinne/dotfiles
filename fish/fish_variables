@@ -4,4 +4,4 @@ SETUVAR __fish_initialized:4300
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_user_paths:/home/rkinne/\x2elocal/share/rust\x2dcargo/bin\x1e/home/rkinne/\x2eopencode/bin
+SETUVAR fish_user_paths:/home/overlord/go/bin\x1e/home/overlord/\x2eopencode/bin\x1e/home/overlord/\x2econfig/composer/vendor/bin\x1e/home/overlord/\x2elocal/bin\x1e/home/rkinne/\x2elocal/share/rust\x2dcargo/bin\x1e/home/rkinne/\x2eopencode/bin

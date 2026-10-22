@@ -1,1 +1,1 @@
-source "/home/rkinne/.deno/env.fish"
+# source "/home/rkinne/.deno/env.fish"

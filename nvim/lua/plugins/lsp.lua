@@ -23,11 +23,17 @@ local servers = {
 		cmd = { "lua-language-server" },
 	},
 	clangd = {
-		cmd = { "clangd" },
+		cmd = { "clangd", "--clang-tidy" },
 		manual_install = true,
 	},
 	zls = true,
-	rust_analyzer = true,
+	rust_analyzer = {
+		settings = {
+			["rust-analyzer"] = {
+				check = { command = "clippy" },
+			},
+		},
+	},
 	svelte = true,
 	templ = true,
 	taplo = true,
@@ -64,6 +70,10 @@ local servers = {
 				-- schemas = require("schemastore").yaml.schemas(),
 			},
 		},
+	},
+	qmlls = {
+		cmd = { "qmlls6", "-E" },
+		manual_install = true,
 	},
 
 	ols = {},
@@ -121,7 +131,6 @@ require("mason").setup()
 local ensure_installed = {
 	"stylua",
 	"lua_ls",
-	-- "tailwind-language-server",
 }
 
 vim.list_extend(ensure_installed, servers_to_install)
@@ -177,13 +186,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.diagnostic.config({
-	-- update_in_insert = true,
+	severity_sort = true,
+	underline = true,
+	update_in_insert = false,
 	float = {
 		focusable = false,
 		style = "minimal",
 		border = "rounded",
-		source = "always",
+		source = true,
 		header = "",
 		prefix = "",
+		suffix = function(d)
+			return d.code and (" [%s]"):format(d.code) or ""
+		end,
 	},
 })

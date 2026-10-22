@@ -1,6 +1,3 @@
-# ── Alabaster Refined — mako config ─────────────────────────────────────────
-# Place at: ~/.config/mako/config
-
 sort=-time
 layer=overlay
 anchor=top-right
@@ -8,41 +5,40 @@ anchor=top-right
 width=320
 height=120
 border-size=1
-border-radius=4
+border-radius=0
 padding=12
 
 background-color=#000000
-border-color=#3C3C3C
-text-color=#D4D4D4
-progress-color=over #4EC9B0
+border-color=#222222
+text-color=#f1f1f1
+progress-color=over #A8A1DE
 
-font=JetBrainsMono Nerd Font 11
+font=Pragmasevka Nerd Font 12
 max-visible=5
 default-timeout=4000
 ignore-timeout=0
 
 [urgency=low]
-text-color=#777777
-border-color=#3C3C3C
+text-color=#888888
+border-color=#222222
 default-timeout=3000
 
 [urgency=critical]
-text-color=#F44747
-border-color=#F44747
+text-color=#f1f1f1
+border-color=#5f8787
 default-timeout=0
 
-[summary="Brightness*"]
-text-color=#4EC9B0
-border-color=#4EC9B0
+[summary~="Brightness.*"]
+text-color=#A8A1DE
+border-color=#A8A1DE
 default-timeout=1000
 
-[summary="Volume*"]
-text-color=#6A9955
-border-color=#3C3C3C
+[summary~="Volume.*"]
+text-color=#c1c1c1
+border-color=#756482
 default-timeout=1000
 
-[summary="*muted*"]
-text-color=#777777
-border-color=#3C3C3C
+[summary~=".*muted.*"]
+text-color=#888888
+border-color=#505050
 default-timeout=1000
-

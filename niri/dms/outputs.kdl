@@ -1,0 +1,7 @@
+/-output "eDP-1" {
+    mode "preferred"
+    scale 1.75
+    transform "normal"
+    position x=0 y=0
+}
+

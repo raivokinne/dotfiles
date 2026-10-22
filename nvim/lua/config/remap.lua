@@ -7,24 +7,16 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.api.nvim_set_keymap("n", "<leader>tf", "<Plug>PlenaryTestFile", { noremap = false, silent = false })
 
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-map('n', "<C-q>", ":copen<CR>", { silent = true })
+map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<C-q>", ":copen<CR>", { silent = true })
 map({ "n" }, "<leader>c", "1z=")
 map({ "n" }, "<leader>op", "<Cmd>Open .<CR>", { desc = "Open current directory in Finder." })
 
-map(
-	"n",
-	"<leader>ee",
-	"oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
-)
+map("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 
-map(
-	"n",
-	"<leader>ef",
-	"oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj"
-)
+map("n", "<leader>ef", 'oif err != nil {<CR>}<Esc>Olog.Fatalf("error: %s\\n", err.Error())<Esc>jj')
 
-map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 map("n", "j", "gj")
 map("n", "k", "gk")
@@ -37,8 +29,8 @@ map("n", "N", "Nzzzv")
 map("n", "=ap", "ma=ap'a")
 
 map("n", "tt", ":tabnew<CR>")
-map("n", "<S-h>", ":tabnext<CR>")
-map("n", "<S-l>", ":tabprev<CR>")
+map("n", "<S-l>", ":tabnext<CR>")
+map("n", "<S-h>", ":tabprev<CR>")
 map("n", "tc", ":tabclose<CR>")
 
 map("x", "<leader>p", [["_dP]])
@@ -90,11 +82,10 @@ map("n", "<leader>pcc", pack_clean)
 -- 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 -- end
 
+map("n", "<leader>xx", "<Cmd>source %<CR>", { desc = "Source current file" })
+map("n", "<leader>x", "<Cmd>:.lua<CR>", { desc = "Lua: execute current line" })
+map("v", "<leader>x", "<Cmd>:lua<CR>", { desc = "Lua: execute current selection" })
 
-map('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
-map('n', '<leader>x', '<Cmd>:.lua<CR>', { desc = 'Lua: execute current line' })
-map('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current selection' })
-
-map('n', '<leader>bb', '<C-^>', { desc = 'Switch to alternate buffer' })
-map('n', '<leader>bn', ':bnext<cr>', { desc = 'Next buffer' })
-map('n', '<leader>bp', ':bprevious<cr>', { desc = 'Previous buffer' })
+map("n", "<leader>bb", "<C-^>", { desc = "Switch to alternate buffer" })
+map("n", "<leader>bn", ":bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" })

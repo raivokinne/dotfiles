@@ -11,6 +11,7 @@ require("conform").setup({
 		javascript = { "prettier" },
 		typescript = { "prettier" },
 		elixir = { "mix" },
+		php = { "pint", "php_cs_fixer", stop_after_first = true },
 	},
 	formatters = {
 		["clang-format"] = {

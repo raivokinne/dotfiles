@@ -1,7 +1,6 @@
 vim.opt.nu = true
-vim.opt.guicursor = ""
 vim.opt.tabstop = 4
-vim.opt.relativenumber = true
+vim.opt.guicursor = ""
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
@@ -19,3 +18,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.shortmess:append("c")
 vim.opt.winborder = "rounded"
+vim.opt.termguicolors = true
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25

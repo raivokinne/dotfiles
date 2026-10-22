@@ -14,6 +14,10 @@ vim.pack.add({
 	{ src = "https://github.com/folke/trouble.nvim" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/tpope/vim-dadbod" },
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-ui" },
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" },
+	{ src = "https://github.com/mfussenegger/nvim-lint" },
 })
 
 require("mason").setup()
@@ -26,3 +30,4 @@ require("plugins.trouble")
 require("plugins.lsp")
 require("plugins.fugitive")
 require("plugins.conform")
+require("plugins.lint")

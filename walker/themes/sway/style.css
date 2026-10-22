@@ -1,0 +1,247 @@
+/* Walker theme: "sway"
+   Matches the sway/kitty/waybar/fuzzel palette:
+   bg #000000 · surface #20173B · border #756482 · accent #A8A1DE
+   fg #f1f1f1 · dim #c1c1c1 · mute #999999 · teal #5f8787 · red #8f6262
+*/
+
+@define-color bg        #000000;
+@define-color surface   #20173B;
+@define-color border    #756482;
+@define-color accent    #A8A1DE;
+@define-color fg        #f1f1f1;
+@define-color fg_dim    #c1c1c1;
+@define-color fg_mute   #999999;
+@define-color teal      #5f8787;
+@define-color red       #8f6262;
+
+* {
+  all: unset;
+  font-family: "Pragmasevka Nerd Font", monospace;
+  font-size: 13px;
+}
+
+popover {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 0px;
+  padding: 10px;
+}
+
+.normal-icons {
+  -gtk-icon-size: 16px;
+}
+
+.large-icons {
+  -gtk-icon-size: 32px;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
+.box-wrapper {
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.6),
+    0 4px 10px rgba(0, 0, 0, 0.4);
+  background: @bg;
+  padding: 16px;
+  border-radius: 0px;
+  border: 1px solid @border;
+}
+
+.preview-box,
+.elephant-hint,
+.placeholder {
+  color: @fg_mute;
+}
+
+.box {
+}
+
+.search-container {
+  border-radius: 0px;
+  background: @bg;
+  border-bottom: 1px solid @border;
+  padding-bottom: 8px;
+}
+
+.input {
+  caret-color: @accent;
+  background: transparent;
+  padding: 8px 0;
+  color: @fg;
+  font-size: 15px;
+}
+
+.input placeholder {
+  color: @fg_mute;
+  opacity: 0.7;
+}
+
+.input selection {
+  background: @accent;
+  color: @bg;
+}
+
+.content-container {
+}
+
+.placeholder {
+}
+
+.scroll {
+}
+
+.list {
+  color: @fg;
+  padding: 4px 0;
+}
+
+child {
+}
+
+.item-box {
+  border-radius: 0px;
+  padding: 8px 10px;
+  border-left: 1px solid transparent;
+  color: @fg;
+}
+
+.item-quick-activation {
+  background: alpha(@accent, 0.2);
+  color: @accent;
+  border-radius: 0px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+child:selected .item-box,
+row:selected .item-box {
+  background: @surface;
+  border-left: 1px solid @accent;
+}
+
+child:selected .item-text,
+row:selected .item-text {
+  color: @accent;
+}
+
+.item-text-box {
+}
+
+.item-subtext {
+  font-size: 11px;
+  color: @fg_mute;
+  opacity: 0.8;
+}
+
+.providerlist .item-subtext {
+  font-size: unset;
+  opacity: 0.75;
+}
+
+.item-image-text {
+  font-size: 28px;
+  color: @accent;
+}
+
+.preview {
+  border: 1px solid @surface;
+  border-radius: 0px;
+  color: @fg;
+  background: alpha(@surface, 0.35);
+}
+
+.calc .item-text {
+  font-size: 24px;
+  color: @teal;
+}
+
+.calc .item-subtext {
+}
+
+.symbols .item-image {
+  font-size: 24px;
+}
+
+.todo.done .item-text-box {
+  opacity: 0.25;
+}
+
+.todo.urgent {
+  font-size: 24px;
+  color: @red;
+}
+
+.todo.active {
+  font-weight: bold;
+  color: @teal;
+}
+
+.bluetooth.disconnected {
+  opacity: 0.5;
+}
+
+.preview .large-icons {
+  -gtk-icon-size: 64px;
+}
+
+.keybinds {
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px solid @surface;
+  font-size: 12px;
+  color: @fg_mute;
+}
+
+.global-keybinds {
+}
+
+.item-keybinds {
+}
+
+.keybind {
+}
+
+.keybind-button {
+  color: @fg_dim;
+  opacity: 0.8;
+}
+
+.keybind-button:hover {
+  color: @accent;
+  opacity: 1;
+}
+
+.keybind-bind {
+  text-transform: lowercase;
+  color: @fg_mute;
+  opacity: 0.8;
+}
+
+.keybind-label {
+  padding: 2px 5px;
+  border-radius: 0px;
+  border: 1px solid @border;
+  color: @accent;
+  background: @surface;
+}
+
+.error {
+  padding: 8px 10px;
+  margin-top: 8px;
+  border-radius: 0px;
+  background: @red;
+  color: @fg;
+}
+
+:not(.calc).current {
+  font-style: italic;
+  color: @teal;
+}
+
+.preview-content.archlinuxpkgs,
+.preview-content.dnfpackages,
+.preview-content.aptpackages {
+  font-family: monospace;
+}
