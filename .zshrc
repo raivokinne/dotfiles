@@ -1,5 +1,4 @@
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="%B%F{4}[%F{3}%n%F{8}@%F{6}%M %F{5}%~%F{4}]%f%b %(?.%F{2}.%F{1})❯%f "
 
 EDITOR=vim
 
@@ -18,6 +17,8 @@ _comp_options+=(globdots)               # Include hidden files.
 export XDG_CONFIG_HOME=$HOME/.config
 
 alias vim=nvim
+
+bindkey -s ^f "tmux-sessionizer\n"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -51,3 +52,8 @@ addToPathFront $HOME/.deno/bin
 addToPath $HOME/.cargo/bin
 addToPath $HOME/.sst/bin
 addToPath $HOME/.npm-global/bin
+
+export PATH="/home/overlord/.stripe/bin:$PATH"
+
+# opencode
+export PATH=/home/overlord/.opencode/bin:$PATH

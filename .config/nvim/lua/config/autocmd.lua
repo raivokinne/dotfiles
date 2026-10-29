@@ -12,6 +12,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	command = "wincmd L",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "netrw",
+	callback = function()
+		vim.opt_local.cursorline = true
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		-- dired uses ^ to go up a directory
+		vim.keymap.set("n", "^", "<Plug>NetrwBrowseUpDir", { buffer = true, remap = true })
+	end,
+})
+
 vim.api.nvim_create_autocmd("VimResized", {
 	command = "wincmd =",
 })

@@ -78,10 +78,6 @@ end
 
 map("n", "<leader>pcc", pack_clean)
 
--- for i = 1, 8 do
--- 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
--- end
-
 map("n", "<leader>xx", "<Cmd>source %<CR>", { desc = "Source current file" })
 map("n", "<leader>x", "<Cmd>:.lua<CR>", { desc = "Lua: execute current line" })
 map("v", "<leader>x", "<Cmd>:lua<CR>", { desc = "Lua: execute current selection" })

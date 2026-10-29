@@ -17,7 +17,18 @@ vim.pack.add({
 	{ src = "https://github.com/tpope/vim-dadbod" },
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-ui" },
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" },
-	{ src = "https://github.com/mfussenegger/nvim-lint" },
+	"https://github.com/mfussenegger/nvim-dap",
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/rcarriga/nvim-dap-ui",
+	"https://github.com/theHamsta/nvim-dap-virtual-text",
+	{
+		src = "https://github.com/JavaHello/spring-boot.nvim",
+		version = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",
+	},
+	"https://github.com/MunifTanjim/nui.nvim",
+	"https://github.com/nvim-java/nvim-java",
+	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/nvim-tree/nvim-web-devicons",
 })
 
 require("mason").setup()
@@ -30,4 +41,6 @@ require("plugins.trouble")
 require("plugins.lsp")
 require("plugins.fugitive")
 require("plugins.conform")
-require("plugins.lint")
+require("plugins.dap")
+require("plugins.java")
+require("plugins.oil")

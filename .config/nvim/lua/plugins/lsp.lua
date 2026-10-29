@@ -18,7 +18,6 @@ local servers = {
 			},
 		},
 	},
-	glsl_analyzer = true,
 	lua_ls = {
 		cmd = { "lua-language-server" },
 	},
@@ -26,7 +25,6 @@ local servers = {
 		cmd = { "clangd", "--clang-tidy" },
 		manual_install = true,
 	},
-	zls = true,
 	rust_analyzer = {
 		settings = {
 			["rust-analyzer"] = {
@@ -34,15 +32,8 @@ local servers = {
 			},
 		},
 	},
-	svelte = true,
-	templ = true,
-	taplo = true,
 	phpactor = true,
-
-	pyright = true,
 	ruff = { manual_install = true },
-	biome = true,
-	astro = true,
 	vtsls = {
 		server_capabilities = {
 			documentFormattingProvider = false,
@@ -74,47 +65,6 @@ local servers = {
 	qmlls = {
 		cmd = { "qmlls6", "-E" },
 		manual_install = true,
-	},
-
-	ols = {},
-	racket_langserver = { manual_install = true },
-	roc_ls = { manual_install = true },
-	gleam = {
-		manual_install = true,
-	},
-	tailwindcss = {
-		init_options = {
-			userLanguages = {
-				elixir = "phoenix-heex",
-				eruby = "erb",
-				heex = "phoenix-heex",
-			},
-		},
-		filetypes = {
-			"html",
-			"css",
-			"scss",
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"vue",
-			"svelte",
-			"ocaml.mlx",
-		},
-		settings = {
-			tailwindCSS = {
-				experimental = {
-					classRegex = {
-						[[class: "([^"]*)]],
-						[[className="([^"]*)]],
-					},
-				},
-				includeLanguages = {
-					["ocaml.mlx"] = "html",
-				},
-			},
-		},
 	},
 }
 

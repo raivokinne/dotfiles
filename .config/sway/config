@@ -1,4 +1,28 @@
-font pango: Pragmasevka Nerd Font 12
+font pango: Pragmasevka Nerd Font 10
+
+set $bg           #141415
+set $inactive_bg  #1c1c24
+set $fg           #cdcdcd
+set $float_border #878787
+set $line         #252530
+set $comment      #606079
+set $builtin      #b4d4cf
+set $property     #c3c3d5
+set $constant     #aeaed1
+set $parameter    #bb9dbd
+set $visual       #333738
+set $error        #d8647e
+set $warning      #f3be7c
+set $hint         #7e98e8
+set $operator     #90a0b5
+set $type         #9bb4bc
+set $search       #405065
+set $plus         #7fa563
+set $delta        #f3be7c
+set $func         #bc96b0
+set $keyword      #787bab
+set $string       #8a739a
+set $number       #8f729e
 
 set $mod Mod4
 
@@ -9,11 +33,11 @@ set $right l
 
 set $term kitty
 
-set $menu walker
+set $menu rofi -show drun
 
 focus_follows_mouse always
 
-output eDP-1 resolution 2560x1600 position 0,0 scale 1.6
+output eDP-1 resolution 2560x1600 position 0,0 scale 1.75
 
 input "Apple MTP multi-touch" {
 	dwt disabled
@@ -123,11 +147,13 @@ bindsym $mod+space focus mode_toggle
 
 bindsym $mod+a focus parent
 
-bindsym $mod+Shift+s exec $HOME/.config/scripts/screenshot.sh area
+bindsym $mod+Shift+s exec $HOME/.local/bin/screenshot.sh area
 
 bindsym $mod+Shift+minus move scratchpad
 
 bindsym $mod+minus scratchpad show
+
+bindsym $mod+Alt+e exec sh -c 'swaymsg "[app_id=emacs] focus" | grep -q true || emacsclient -c -a ""'
 
 mode "resize" {
 
@@ -153,81 +179,44 @@ default_border pixel 1
 default_floating_border pixel 1
 # hide_edge_borders smart
 
+# custom3 window borders
+#                        border       background    text    indicator    child_border
+client.focused           $keyword     $visual       $fg     $keyword     $keyword
+client.focused_inactive  $line        $inactive_bg  $fg     $line        $line
+client.unfocused         $bg          $bg           $comment $bg         $bg
+client.urgent            $error       $error        $bg     $error       $error
+client.placeholder       $bg          $bg           $fg     $bg          $bg
+client.background        $bg
+
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
 exec wl-clip-persist --clipboard regular
 exec wl-paste --type text --watch cliphist -max-items=35 store
 exec wl-paste --type image --watch cliphist -max-items=10 store
-exec awww-daemon
 exec swaync
 exec /usr/lib/xfce-polkit/xfce-polkit
 exec nwg-dock -p left -d -w 5 -nolauncher -ml 5 -l top -hl bottom -i 38
-exec ~/.local/bin/at_startup
-exec elephant
-exec wl-gammarelay-rs &
-exec ~/.scripts/nightlight
 
 bar {
-    swaybar_command waybar
+	font pango: Pragmasevka Nerd Font 12
+    status_command i3status --config ~/.config/i3status/i3status
+
+    colors {
+        background         $bg
+        statusline         $fg
+        separator          $line
+
+        focused_background $inactive_bg
+        focused_statusline $fg
+        focused_separator  $line
+
+        focused_workspace  $keyword $visual $fg
+        active_workspace   $inactive_bg $inactive_bg $fg
+        inactive_workspace $bg $bg $comment
+        urgent_workspace   $error $error $bg
+        binding_mode       $warning $warning $bg
+    }
 }
-
-# set $bg       #000000
-# set $gray1    #1a1a1a
-# set $gray2    #333333
-# set $gray3    #4d4d4d
-# set $gray4    #7f7f7f
-# set $gray6    #bfbfbf
-# set $fg       #ffffff
-# set $blue     #87cefa
-# set $cyan     #00ffff
-# set $red      #ff0000
-#
-# #                       border    background  text     indicator  child_border
-# client.focused          $blue     $bg         $fg      $cyan      $blue
-# client.focused_inactive $gray3    $bg         $gray6   $gray3     $gray3
-# client.unfocused        $gray2    $bg         $gray4   $gray2     $gray2
-# client.urgent           $red      $bg         $fg      $red       $red
-# client.placeholder      $gray1    $bg         $gray4   $gray1     $gray1
-# client.background       $bg
-
-set $bg       #000000
-set $gray1    #222222
-set $gray2    #505050
-set $gray3    #756482
-set $gray4    #888888
-set $gray6    #c1c1c1
-set $fg       #f1f1f1
-set $accent   #A8A1DE
-set $accent2  #756482
-set $alt      #5f8787
-set $red      #5f8787
-
-#                       border    background  text     indicator  child_border
-client.focused          $accent   $bg         $fg      $accent2   $accent
-client.focused_inactive $gray2    $bg         $gray6   $gray2     $gray2
-client.unfocused        $gray1    $bg         $gray4   $gray1     $gray1
-client.urgent           $alt      $bg         $fg      $alt       $alt
-client.placeholder      $gray1    $bg         $gray4   $gray1     $gray1
-client.background       $bg
-
-# set $bg       #151210
-# set $gray1    #201c19
-# set $gray2    #2b2622
-# set $gray3    #41382f
-# set $gray4    #62554a
-# set $gray6    #94826f
-# set $fg       #f4decd
-# set $orange   #ef934d
-# set $yellow   #efbf71
-# set $red      #f16e65
-#
-# #                       border    background  text     indicator  child_border
-# client.focused          $orange   $bg         $fg      $orange    $orange
-# client.focused_inactive $gray3    $bg         $gray6   $gray3     $gray3
-# client.unfocused        $gray2    $bg         $gray4   $gray2     $gray2
-# client.urgent           $red      $bg         $fg      $red       $red
-# client.placeholder      $gray1    $bg         $gray4   $gray1     $gray1
-# client.background       $bg
 
 include /etc/sway/config.d/*
 

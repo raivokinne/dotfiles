@@ -1,24 +1,25 @@
-vim.opt.nu = true
-vim.opt.tabstop = 4
-vim.opt.guicursor = ""
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.smartindent = true
-vim.opt.wrap = false
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.inccommand = "split"
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-vim.opt.updatetime = 50
-vim.opt.shortmess:append("c")
-vim.opt.winborder = "rounded"
-vim.opt.termguicolors = true
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+local opt = vim.opt
+
+opt.nu = true
+opt.relativenumber = true
+opt.guicursor = ""
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.smartindent = true
+opt.wrap = false
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+opt.splitright = true
+opt.splitbelow = true
+opt.inccommand = "split"
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
+opt.updatetime = 50
+opt.shortmess:append("c")
+opt.winborder = "rounded"
+opt.termguicolors = true
+opt.colorcolumn = "100"

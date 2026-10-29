@@ -1,0 +1,59 @@
+# BEGIN_KITTY_FONTS
+font_family      family='PragmasevkaNF'
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
+
+font_size 13
+
+background            #000000
+foreground            #F4F4F5
+
+cursor                #F4F4F5
+cursor_text_color     #000000
+
+selection_background  #2c2c34
+selection_foreground  #F4F4F5
+
+url_color             #82AAFF
+
+active_border_color   #FFAD66
+inactive_border_color #43434d
+bell_border_color     #F1FA8C
+
+active_tab_background   #000000
+active_tab_foreground   #FFAD66
+active_tab_font_style   bold
+inactive_tab_background #121215
+inactive_tab_foreground #777783
+tab_bar_background      #121215
+
+color0  #000000
+color8  #43434d
+
+color1  #FF5C70
+color9  #FF8F9D
+
+color2  #6EFF8A
+color10 #A3FFB6
+
+color3  #F1FA8C
+color11 #FFAD66
+
+color4  #82AAFF
+color12 #B4CCFF
+
+color5  #C792EA
+color13 #FFADDC
+
+color6  #45D6FF
+color14 #9BE8FF
+
+color7  #F4F4F5
+color15 #d2d2d8
+
+cursor_shape block
+cursor_shape_unfocused hollow
+cursor_blink_interval 0
+shell_integration no-cursor
