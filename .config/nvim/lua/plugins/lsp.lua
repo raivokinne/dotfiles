@@ -32,7 +32,11 @@ local servers = {
 			},
 		},
 	},
-	phpactor = true,
+	phpactor = {
+		cmd = { "phpactor", "language-server" },
+		manual_install = true,
+	},
+	cssls = true,
 	ruff = { manual_install = true },
 	vtsls = {
 		server_capabilities = {

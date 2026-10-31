@@ -1,4 +1,15 @@
-PS1="%B%F{4}[%F{3}%n%F{8}@%F{6}%M %F{5}%~%F{4}]%f%b %(?.%F{2}.%F{1})❯%f "
+# Git branch in prompt, with staged (+) / unstaged (*) markers.
+autoload -Uz vcs_info add-zsh-hook
+add-zsh-hook precmd vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' unstagedstr '*'
+zstyle ':vcs_info:git:*' formats ' %F{8}(%F{5}%b%F{2}%c%F{3}%u%F{8})%f'
+zstyle ':vcs_info:git:*' actionformats ' %F{8}(%F{5}%b%F{8}|%F{1}%a%F{2}%c%F{3}%u%F{8})%f'
+
+PS1='%F{5}%~${vcs_info_msg_0_}%F{4}%f%b %(?.%F{2}.%F{1})❯%f '
 
 EDITOR=vim
 

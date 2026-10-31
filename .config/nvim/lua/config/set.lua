@@ -1,8 +1,8 @@
 local opt = vim.opt
 
 opt.nu = true
-opt.relativenumber = true
-opt.guicursor = ""
+-- opt.relativenumber = true
+-- opt.guicursor = ""
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
